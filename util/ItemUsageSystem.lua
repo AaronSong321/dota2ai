@@ -327,7 +327,6 @@ function M.UnImplementedItemUsage()
             return
         end
         if GetWantedPowerTreadsAttribute() ~= treads:GetPowerTreadsStat() then
-            print(npcBot:GetUnitName()..": power treads attribute "..treads:GetPowerTreadsStat()..", but I want "..GetWantedPowerTreadsAttribute())
             npcBot:Action_UseAbility(treads)
             return true
         end
@@ -601,7 +600,7 @@ function M.UnImplementedItemUsage()
                 else
                     if npcBot:GetHealth() <= 250 and not npcBot:WasRecentlyDamagedByAnyHero(0.8) then
                         npcBot:Action_UseAbility(itemArmlet)
-                        itemArmlet.lastOpenTime = DotaTime()
+                        itemArmlet.lastOpenTime = nil
                     end
                 end
             else
@@ -613,17 +612,16 @@ function M.UnImplementedItemUsage()
             end
         elseif AbilityExtensions:IsAttackingEnemies(npcBot) or AbilityExtensions:IsRetreating(npcBot) then
             if not IsUsingArmlet then
-                if #npcBot:GetNearbyHeroes(1599, true, BOT_MODE_NONE) > 0 or npcBot:WasRecentlyDamagedByAnyHero(2.5) then
+                if #npcBot:GetNearbyHeroes(1000, true, BOT_MODE_NONE) > 0 or npcBot:WasRecentlyDamagedByAnyHero(1.5) then
                     npcBot:Action_UseAbility(itemArmlet)
                     itemArmlet.lastOpenTime = DotaTime()
                     return
                 end
             else
                 if npcBot:GetHealth() <= 300 then
-                    local projectiles = npcBot:GetIncomingTrackingProjectiles()
-                    if (#projectiles == 0 or AbilityExtensions:CannotBeKilledNormally(npcBot)) and DotaTime() - itemArmlet.lastOpenTime >= 0.6 then
+                local projectiles = AbilityExtensions:FilterNot(npcBot:GetIncomingTrackingProjectiles(), function(t) return AbilityExtensions:IsOnSameTeam(t, npcBot) end)
+                    if (#projectiles == 0 or AbilityExtensions:CannotBeKilledNormally(npcBot)) and DotaTime() - itemArmlet.lastOpenTime >= 1 then
                         npcBot:Action_UseAbility(itemArmlet)
-                        npcBot:ActionQueue_UseAbility(itemArmlet)
                         itemArmlet.lastOpenTime = DotaTime()
                         return
                     end

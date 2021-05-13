@@ -18,9 +18,7 @@ M.Range = function(self, min, max, step)
     return g
 end
 M.Contains = function(self, tb, value, equals)
-    equals = equals or function(a, b)
-        return a == b
-    end
+    equals = equals or function(__mira_olpar_1, __mira_olpar_2) return __mira_olpar_1 == __mira_olpar_2 end
     for _, v in ipairs(tb) do
         if equals(v, value) then
             return true
@@ -29,9 +27,7 @@ M.Contains = function(self, tb, value, equals)
     return false
 end
 M.ContainsKey = function(self, tb, key, equals)
-    equals = equals or function(a, b)
-        return a == b
-    end
+    equals = equals or function(__mira_olpar_1, __mira_olpar_2) return __mira_olpar_1 == __mira_olpar_2 end
     for k, _ in pairs(tb) do
         if equals(key, k) then
             return true
@@ -252,9 +248,7 @@ M.Partition = function(self, tb, filter)
     return a, b
 end
 M.Distinct = function(self, tb, equals)
-    equals = equals or function(a, b)
-        return a == b
-    end
+    equals = equals or function(__mira_olpar_1, __mira_olpar_2) return __mira_olpar_1 == __mira_olpar_2 end
     local g = NewTable()
     for _, v in pairs(tb) do
         if not self:Contains(g, v, equals) then

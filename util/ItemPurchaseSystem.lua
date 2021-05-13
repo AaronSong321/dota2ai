@@ -659,13 +659,6 @@ M.IsConsumableItem = function(self, item)
     return AbilityExtensions:Contains(self.Consumables, string.sub(item, 6))
 end
 
-
-local function HasScepter(npc)
-    return npc:HasScepter() or npc:HasModifier("modifier_item_ultimate_scepter")
-end
-
-
-
 M.CreateItemInformationTable = function(self, npcBot, itemTable)
     local function ExpandFirstLevel(item)
         if isLeaf(item) then

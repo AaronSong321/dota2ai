@@ -102,7 +102,7 @@ Consider[1] = function()
     end
 
 	if AbilityExtensions:NotRetreating(npcBot) then
-		if target = AbilityExtensions:GetTargetIfGood(npcBot) then 
+		if local target = AbilityExtensions:GetTargetIfGood(npcBot) then 
 			coroutine.yield(BOT_ACTION_DESIRE_HIGH, target)
 		end
 	end

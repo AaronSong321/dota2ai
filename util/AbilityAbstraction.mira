@@ -22,7 +22,7 @@ M.Range = function(self, min, max, step)
 end
 
 M.Contains = function(self, tb, value, equals)
-    equals = equals or function(a, b) return a == b end
+    equals = equals or {==}
     for _, v in ipairs(tb) do
         if equals(v, value) then
             return true
@@ -32,7 +32,7 @@ M.Contains = function(self, tb, value, equals)
 end
 
 M.ContainsKey = function(self, tb, key, equals)
-    equals = equals or function(a, b) return a == b end
+    equals = equals or {==}
     for k, _ in pairs(tb) do
         if equals(key, k) then
             return true
@@ -268,7 +268,7 @@ M.Partition = function(self, tb, filter)
 end
 
 M.Distinct = function(self, tb, equals)
-    equals = equals or function(a, b) return a == b end
+    equals = equals or {==}
     local g = NewTable()
     for _, v in pairs(tb) do
         if not self:Contains(g, v, equals) then
