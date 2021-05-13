@@ -619,13 +619,19 @@ function M.UnImplementedItemUsage()
                 end
             else
                 if npcBot:GetHealth() <= 300 then
-                local projectiles = AbilityExtensions:FilterNot(npcBot:GetIncomingTrackingProjectiles(), function(t) return AbilityExtensions:IsOnSameTeam(t, npcBot) end)
+                    local projectiles = AbilityExtensions:FilterNot(npcBot:GetIncomingTrackingProjectiles(), function(t) return AbilityExtensions:IsOnSameTeam(t, npcBot) end)
                     if (#projectiles == 0 or AbilityExtensions:CannotBeKilledNormally(npcBot)) and DotaTime() - itemArmlet.lastOpenTime >= 1 then
                         npcBot:Action_UseAbility(itemArmlet)
                         itemArmlet.lastOpenTime = DotaTime()
                         return
                     end
                 end
+            end
+        else
+            if IsUsingArmlet then
+                npcBot:Action_UseAbility(itemArmlet)
+                itemArmlet.lastOpenTime = nil
+                return
             end
         end
     end
