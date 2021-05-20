@@ -576,7 +576,7 @@ function M.UnImplementedItemUsage()
         end
     end
 
-    local IsUsingArmlet = npcBot:HasModifier("modifier_item_armlet_unholy_health")
+    --[[local IsUsingArmlet = npcBot:HasModifier("modifier_item_armlet_unholy_health")
     local itemArmlet = IsItemAvailable("item_armlet")
     if itemArmlet then
         if itemArmlet.lastOpenTime == nil and IsUsingArmlet then
@@ -634,7 +634,7 @@ function M.UnImplementedItemUsage()
                 return
             end
         end
-    end
+    end]]
 
     local sc = IsItemAvailable("item_solar_crest") or IsItemAvailable("item_medallion_of_courage")
     if sc ~= nil and sc:IsFullyCastable() then
