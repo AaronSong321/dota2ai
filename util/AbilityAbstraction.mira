@@ -1697,7 +1697,7 @@ end
 
 M.GetEmptyBackpackSlots = function(self, npc)
     local g = 0
-    for i = 7, 9 do
+    for i = 6, 8do
         if npc:GetItemInSlot(i) == nil then
             g = g+1
         end
@@ -1706,7 +1706,7 @@ M.GetEmptyBackpackSlots = function(self, npc)
 end
 
 M.SwapItemToBackpack = function(self, npc, itemIndex)
-    for i = 6,8 do
+    for i = 6, 8 do
         if npc:GetItemInSlot(i) == nil then
             npc:ActionImmediate_SwapItems(itemIndex, i)
             return true
@@ -1815,7 +1815,7 @@ end
 
 M.SwapCheapestItemToBackpack = function(self, npc)
     local cheapestItem = self:First(self:Sort(self:Filter(self:GetInventoryItems(npc), function(t) 
-        return not self:IsBoots(t) and not string.match(t:GetName(), "item_ward")
+        return not self:IsBoots(t) and not string.match(t:GetName(), "ward")
     end), function(a, b) return GetItemCost(a:GetName()) - GetItemCost(b:GetName()) end))
     if cheapestItem == nil then
         return false
@@ -2530,8 +2530,7 @@ M.PURCHASE_ITEM_SUCCESS=-1
 -- unit is dead (20)
 -- target tree is not active (43)
 -- ability is still in cooldown (15)
--- ability is hidden
--- cannot cast ability on tree
+-- cannot cast ability on tree (34)
 -- cannot cast ability on target
 -- target is unselectable
 -- order requires a physical item target, but specified target is not a physical item (9)
@@ -2545,6 +2544,7 @@ M.PURCHASE_ITEM_SUCCESS=-1
 -- unit can't perform command, unit has commands restricted (74)
 -- hero does not have enough ability points to upgrade ability (13)
 -- ability is hidden (60)
+-- can't cast on target, ability cannot target teammates (29)
 
 
 M.IgnoreDamageModifiers = {

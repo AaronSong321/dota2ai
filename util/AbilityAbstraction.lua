@@ -1566,7 +1566,7 @@ M.GetEmptyItemSlots = function(self, npc)
 end
 M.GetEmptyBackpackSlots = function(self, npc)
     local g = 0
-    for i = 7, 9 do
+    for i = 6, 8 do
         if npc:GetItemInSlot(i) == nil then
             g = g + 1
         end
@@ -1673,7 +1673,7 @@ M.IsBoots = function(self, item)
 end
 M.SwapCheapestItemToBackpack = function(self, npc)
     local cheapestItem = self:First(self:Sort(self:Filter(self:GetInventoryItems(npc), function(t)
-        return not self:IsBoots(t) and not string.match(t:GetName(), "item_ward")
+        return not self:IsBoots(t) and not string.match(t:GetName(), "ward")
     end), function(a, b)
         return GetItemCost(a:GetName()) - GetItemCost(b:GetName())
     end))
