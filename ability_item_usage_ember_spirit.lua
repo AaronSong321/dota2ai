@@ -379,7 +379,7 @@ Consider[4] = function()
     if AbilityExtensions:IsRetreating(npcBot) then
         local distanceToFountain = AbilityExtensions:Filter(activeRemnants, function(t) 
             local distance = GetUnitToUnitDistance(t, npcBot)
-            return distance >= npcBot:GetCurrentMovementSpeed() * 2 and distance > AbilityExtensions:GetDistanceFromAncient(t) + 600
+            return distance >= npcBot:GetCurrentMovementSpeed() * 2.5 and distance >= 700 and distance > AbilityExtensions:GetDistanceFromAncient(t) + 600
         end)
         distanceToFountain = AbilityExtensions:Map(distanceToFountain, function(t) return { t, AbilityExtensions:GetDistanceFromAncient(t) } end)
         distanceToFountain = AbilityExtensions:SortByMinFirst(distanceToFountain, function(t) return t[2] end)

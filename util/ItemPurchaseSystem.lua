@@ -343,7 +343,6 @@ function M.WeNeedTpscroll()
 				npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );
 			elseif ( DotaTime() >= 20 * 60 ) then
 				npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );
-				npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );
 			end
 		else
 			npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );

@@ -1225,7 +1225,7 @@ M.breakModifiers = {
     -- "modifier_spirit_breaker_greaterbash_break",--only break with shard
     "modifier_viper_nethertoxin",
 }
--- TODO: how to record he caster of these abilities
+-- TODO: how to record the caster of these abilities
 
 M.noTrueSightRootAbilityAssociation = {
     dark_willow_branble_maze = "modifier_dark_willow_bramble_maze",
